@@ -25,9 +25,9 @@ namespace CartService.Controllers
         [HttpPut]
         [Authorize]
         [Route("{buyerId}")]
-        public async Task<IActionResult> AddWebhooks([FromRoute] string buyerId, [FromBody] IEnumerable<string> urls)
+        public async Task<IActionResult> Subscribe([FromRoute] string buyerId, [FromBody] IEnumerable<string> urls)
         {
-            await _repository.AddWebhooks(urls, buyerId);
+            await _repository.Subscribe(urls, buyerId);
 
             return Ok();
         }
@@ -38,9 +38,9 @@ namespace CartService.Controllers
         /// <param name="urls">Список урлов.</param>
         [HttpPut]
         [Authorize]
-        public async Task<IActionResult> AddWebhooks([FromBody] IEnumerable<string> urls)
+        public async Task<IActionResult> Subscribe([FromBody] IEnumerable<string> urls)
         {
-            await _repository.AddWebhooks(urls);
+            await _repository.Subscribe(urls);
 
             return Ok();
         }
@@ -53,9 +53,9 @@ namespace CartService.Controllers
         [HttpDelete]
         [Authorize]
         [Route("{buyerId}")]
-        public async Task<IActionResult> RemoveWebhooks([FromRoute] string buyerId, [FromBody] IEnumerable<string> urls)
+        public async Task<IActionResult> Unsubscribe([FromRoute] string buyerId, [FromBody] IEnumerable<string> urls)
         {
-            await _repository.RemoveWebhooks(urls, buyerId);
+            await _repository.Unsubscribe(urls, buyerId);
 
             return Ok();
         }
@@ -66,9 +66,9 @@ namespace CartService.Controllers
         /// <param name="urls">Список урлов.</param>
         [HttpDelete]
         [Authorize]
-        public async Task<IActionResult> RemoveWebhooks([FromBody] IEnumerable<string> urls)
+        public async Task<IActionResult> Unsubscribe([FromBody] IEnumerable<string> urls)
         {
-            await _repository.RemoveWebhooks(urls);
+            await _repository.Unsubscribe(urls);
 
             return Ok();
         }

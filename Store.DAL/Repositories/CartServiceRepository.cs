@@ -192,7 +192,7 @@ namespace Store.DAL
             }
         }
 
-        public async Task AddWebhooks(IEnumerable<string> urls, string buyerId = "")
+        public async Task Subscribe(IEnumerable<string> urls, string buyerId = "")
         {
             if (urls?.Any() != true)
             {
@@ -231,7 +231,7 @@ namespace Store.DAL
             }
         }
 
-        public async Task RemoveWebhooks(IEnumerable<string> urls, string buyerId = "")
+        public async Task Unsubscribe(IEnumerable<string> urls, string buyerId = "")
         {
             if (urls?.Any() != true)
             {

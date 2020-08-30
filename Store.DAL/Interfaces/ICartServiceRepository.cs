@@ -36,13 +36,13 @@ namespace Store.DAL
         /// </summary>
         /// <param name="urls">Ссылки для добваления.</param>
         /// <param name="buyerId">Id покупателя.</param>
-        public Task AddWebhooks(IEnumerable<string> urls, string buyerId = "");
+        public Task Subscribe(IEnumerable<string> urls, string buyerId = "");
 
         /// <summary>
         /// Удаление вебхуков.
         /// </summary>
         /// <param name="urls">Ссылки для добваления.</param>
         /// <param name="buyerId">Id покупателя.</param>
-        public Task RemoveWebhooks(IEnumerable<string> urls, string buyerId = "");
+        public Task Unsubscribe(IEnumerable<string> urls, string buyerId = "");
     }
 }
