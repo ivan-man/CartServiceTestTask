@@ -27,13 +27,15 @@ namespace Store.DAL
                 throw new ArgumentOutOfRangeException($"{nameof(daysLimit)} must to be above zero.");
             }
 
+            var thirtyDaysClause = _dateTimeService.Now().AddDays(-daysLimit).ToString("yyyyMMdd");
+
             var deleteClause = 
                 $"DELETE FROM public.carts c  {n}" +
                 $"WHERE c.buyer_id in  {n}" +
                 $"( {n}" +
                 $"  SELECT DISTINCT buyer_id {n}" +
                 $"  FROM public.carts c {n}" +
-                $"  WHERE c.created < '{_dateTimeService.Now().AddDays(-daysLimit):YYYYMMdd}' {n}" +
+                $"  WHERE c.created < '{thirtyDaysClause}' {n}" +
                 $"); {n}";
 
             await using var connection = new NpgsqlConnection(ConnectionString);
@@ -49,7 +51,7 @@ namespace Store.DAL
                 $"( {n}" +
                 $"  SELECT DISTINCT buyer_id {n}" +
                 $"  FROM public.carts c {n}" +
-                $"  WHERE c.created < '{_dateTimeService.Now().AddDays(-daysLimit):YYYYMMdd}' {n}" +
+                $"  WHERE c.created < '{_dateTimeService.Now().AddDays(-daysLimit):yyyyMMdd}' {n}" +
                 $");";
 
             await using var connection = new NpgsqlConnection(ConnectionString);

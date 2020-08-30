@@ -21,11 +21,11 @@ namespace Store.Scheduler.Domain.Configure
                 Console.WriteLine(e);
             }
 
-            //RecurringJob.AddOrUpdate<CartTimeoutService>(x => x.ClearOldCarts(JobCancellationToken.Null), Cron.Daily(0, 1), timezone);
+            RecurringJob.AddOrUpdate<CartTimeoutService>(x => x.ClearOldCarts(JobCancellationToken.Null), Cron.Daily(0, 1), timezone);
             //RecurringJob.AddOrUpdate<CartTimeoutService>(x => x.ClearOldCarts(JobCancellationToken.Null), Cron.Minutely(), timezone);
 
-            //RecurringJob.AddOrUpdate<CartReportService>(x => x.ClearOldCarts(JobCancellationToken.Null), Cron.Daily(0, 1), timezone);
-            RecurringJob.AddOrUpdate<CartReportService>(x => x.GenerateReport(JobCancellationToken.Null), Cron.Minutely(), timezone);
+            RecurringJob.AddOrUpdate<CartReportService>(x => x.GenerateReport(JobCancellationToken.Null), Cron.Daily(6, 1), timezone);
+            //RecurringJob.AddOrUpdate<CartReportService>(x => x.GenerateReport(JobCancellationToken.Null), Cron.Minutely(), timezone);
         }
     }
 }

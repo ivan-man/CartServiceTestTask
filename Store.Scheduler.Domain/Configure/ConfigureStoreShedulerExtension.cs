@@ -21,6 +21,7 @@ namespace Store.Scheduler.Domain.Configure
             services.AddSingleton(dateTimeService);
 
             services.AddSingleton<ICartTimeoutServiceRepository>(new CartTimeoutServiceRepository(dateTimeService, appSettings.CartServiceConnectionString));
+            services.AddSingleton<ICartReportServiceRepository>(new CartReportServiceRepository(dateTimeService, appSettings.CartServiceConnectionString));
 
             services.AddTransient<ICartTimeoutService, CartTimeoutService>();
             services.AddTransient<ICartReportService, CartReportService>();

@@ -29,12 +29,15 @@ namespace Store.Scheduler.Domain.Services
         [DisableConcurrentExecution(3600 * 4)]
         public async Task ClearOldCarts(IJobCancellationToken cancellationToken)
         {
-            //ToDo take daysLimit from AppSettings
             _logger.LogInformation($"{nameof(ClearOldCarts)} started in {DateTime.Now}");
 
-            var webHooks = await _repository.GetHooks(daysLimit: 30);
+            // Лимит годности корзин лучше вынести в appSettings, 
+            // но в рамкох тестового задания допустимо оставить тут.
+            var daysLimit = 30;
 
-            await _repository.RemoveOldCarts(daysLimit: 30);
+            var webHooks = await _repository.GetHooks(daysLimit);
+
+            await _repository.RemoveOldCarts(daysLimit);
 
             await CallHooks(webHooks);
 
@@ -45,7 +48,8 @@ namespace Store.Scheduler.Domain.Services
         {
             using (var client = new HttpClient())
             {
-                //ToDo call logic
+                // Логика работы с хуками пусть остается вне рамок этой задачи, 
+                // поскольку отсутствуют четкие требования.
             }
         }
     }
