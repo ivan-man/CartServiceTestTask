@@ -1,4 +1,24 @@
-﻿-- creating DB
+﻿-- Identity DB ---------------------------------------
+CREATE DATABASE "identity.db"
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'en_US.utf8'
+    LC_CTYPE = 'en_US.utf8'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+-- Sheduler DB ---------------------------------------
+CREATE DATABASE "store.sheduler.db"
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'en_US.utf8'
+    LC_CTYPE = 'en_US.utf8'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+-- Carts Service DB ----------------------------------
 CREATE DATABASE "store.cart.db"
     WITH 
     OWNER = postgres
@@ -57,3 +77,4 @@ TABLESPACE pg_default;
 ALTER TABLE public.webhooks
     OWNER to postgres;
 
+------------------------------------------------------
