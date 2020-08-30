@@ -18,6 +18,7 @@ namespace Store.DAL
             _dateTimeService = dateTimeService;
         }
 
+        /// <inheritdoc/>
         public async Task<CartReportDto> GetReportData()
         {
             var totalCartsClause =

@@ -20,6 +20,7 @@ namespace Store.DAL
             _dateTimeService = dateTimeService;
         }
 
+        /// <inheritdoc/>
         public async Task RemoveOldCarts(int daysLimit)
         {
             if (daysLimit < 1)
@@ -43,6 +44,7 @@ namespace Store.DAL
             await connection.QueryAsync(deleteClause, commandTimeout: SqlTimeout);
         }
 
+        /// <inheritdoc/>
         public async Task<List<Webhook>> GetHooks(int daysLimit)
         {
             var selectClause =

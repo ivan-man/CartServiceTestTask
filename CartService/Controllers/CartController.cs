@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Store.DAL;
 using Store.DTO.CartService;
 
@@ -12,9 +13,11 @@ namespace CartService.Controllers
     public class CartController : ControllerBase
     {
         private ICartServiceRepository _repository;
+        private ILogger _logger;
 
-        public CartController(ICartServiceRepository repository)
+        public CartController(ILogger<CartController> logger, ICartServiceRepository repository)
         {
+            _logger = logger;
             _repository = repository;
         }
 

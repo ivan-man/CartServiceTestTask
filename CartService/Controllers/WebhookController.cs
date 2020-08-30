@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Store.DAL;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,9 +12,11 @@ namespace CartService.Controllers
     public class WebhookController : ControllerBase
     {
         private ICartServiceRepository _repository;
+        private ILogger _logger;
 
-        public WebhookController(ICartServiceRepository repository)
+        public WebhookController(ILogger<WebhookController> logger, ICartServiceRepository repository)
         {
+            _logger = logger;
             _repository = repository;
         }
 

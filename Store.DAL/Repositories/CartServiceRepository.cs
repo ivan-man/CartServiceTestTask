@@ -19,6 +19,7 @@ namespace Store.DAL
             DefaultTypeMap.MatchNamesWithUnderscores = true;
         }
 
+        /// <inheritdoc/>
         public async Task<CartDto> GetCart(string buyerId, int? page = null, int? pageSize = null, string orderBy = "")
         {
             var limitClause = BuildLimitClause(page, pageSize);
@@ -36,7 +37,6 @@ namespace Store.DAL
                 $"{whereClause} {n}" +
                 $"GROUP BY c.buyer_id {n}" +
                 $"; {n}";
-
 
             var selectProductsClause =
                 $"SELECT {n}" +
@@ -90,6 +90,7 @@ namespace Store.DAL
             return cart;
         }
 
+        /// <inheritdoc/>
         public async Task AddProducts(string buyerId, IEnumerable<AddProductToCartDto> products)
         {
             if (products?.Any() != true)
@@ -144,6 +145,7 @@ namespace Store.DAL
             }
         }
 
+        /// <inheritdoc/>
         public async Task RemoveProducts(string buyerId, IEnumerable<AddProductToCartDto> products)
         {
             if (products?.Any() != true)
@@ -192,6 +194,7 @@ namespace Store.DAL
             }
         }
 
+        /// <inheritdoc/>
         public async Task Subscribe(IEnumerable<string> urls, string buyerId = "")
         {
             if (urls?.Any() != true)
@@ -231,6 +234,7 @@ namespace Store.DAL
             }
         }
 
+        /// <inheritdoc/>
         public async Task Unsubscribe(IEnumerable<string> urls, string buyerId = "")
         {
             if (urls?.Any() != true)
